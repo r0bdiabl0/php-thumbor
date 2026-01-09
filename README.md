@@ -2,7 +2,7 @@
 
 A modern PHP library for generating [Thumbor](https://github.com/thumbor/thumbor) image URLs. Works standalone or with Laravel integration.
 
-[![Tests](https://github.com/r0bdiablo/thumbor/actions/workflows/tests.yml/badge.svg)](https://github.com/r0bdiablo/thumbor/actions/workflows/tests.yml)
+[![Tests](https://github.com/r0bdiabl0/php-thumbor/actions/workflows/tests.yml/badge.svg)](https://github.com/r0bdiabl0/php-thumbor/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PHP Version](https://img.shields.io/badge/php-%5E8.2-blue)](https://www.php.net/)
 
@@ -18,12 +18,13 @@ A modern PHP library for generating [Thumbor](https://github.com/thumbor/thumbor
 ## Requirements
 
 - PHP 8.2 or higher
+- Thumbor 6.0+ (7.0+ recommended for AVIF/WebP/HEIC support)
 - Laravel 10, 11, 12, or 13 (optional, for Laravel integration)
 
 ## Installation
 
 ```bash
-composer require r0bdiablo/thumbor
+composer require r0bdiabl0/php-thumbor
 ```
 
 ## Quick Start
@@ -48,7 +49,7 @@ echo $url;
 
 ### Laravel Usage
 
-The package auto-registers with Laravel 5.5+. Just publish the config:
+The package auto-registers with Laravel 10+. Just publish the config:
 
 ```bash
 php artisan vendor:publish --tag=thumbor-config
@@ -208,7 +209,7 @@ This package replaces the deprecated `r0bdiablo/laravel5-phumbor` package. To mi
 1. Update your `composer.json`:
    ```bash
    composer remove r0bdiablo/laravel5-phumbor
-   composer require r0bdiablo/thumbor
+   composer require r0bdiabl0/php-thumbor
    ```
 
 2. Update namespace imports:
