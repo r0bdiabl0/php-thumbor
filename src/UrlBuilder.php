@@ -38,9 +38,9 @@ use Stringable;
  * @method $this addFilter(string $filter, string|int|float|bool ...$args) Add a custom filter
  * @method $this metadataOnly(bool $metadataOnly) Return JSON metadata instead of image
  * @method $this quality(int $quality) Set JPEG quality (1-100)
- * @method $this format(string $format) Convert to format (webp/jpeg/png/gif/avif/heic)
+ * @method $this format(string $format) Convert to format (webp/jpeg/png/gif/avif/heic). AVIF/HEIC require Thumbor 7+
  * @method $this webp() Convert to WebP format
- * @method $this avif() Convert to AVIF format
+ * @method $this avif() Convert to AVIF format [Thumbor 7+]
  * @method $this blur(int $radius, ?int $sigma = null) Apply blur effect
  * @method $this brightness(int $amount) Adjust brightness (-100 to 100)
  * @method $this contrast(int $amount) Adjust contrast (-100 to 100)
@@ -54,10 +54,10 @@ use Stringable;
  * @method $this stripExif() Remove EXIF metadata
  * @method $this stripIcc() Remove ICC color profile
  * @method $this noUpscale() Prevent upscaling
- * @method $this saturation(float $amount) Adjust saturation (0.0-2.0)
+ * @method $this saturation(float $amount) Adjust saturation (0.0-2.0) [Thumbor 7+]
  * @method $this rgb(int $red, int $green, int $blue) Adjust RGB channels (-100 to 100 each)
- * @method $this maxBytes(int $bytes) Limit maximum file size
- * @method $this equalize() Apply histogram equalization
+ * @method $this maxBytes(int $bytes) Limit maximum file size [Thumbor 7+]
+ * @method $this equalize() Apply histogram equalization [Thumbor 7+]
  * @method $this convolution(array $matrix, int $columns, bool $normalize = false) Apply convolution matrix
  *
  * @see https://thumbor.readthedocs.io/en/latest/usage.html

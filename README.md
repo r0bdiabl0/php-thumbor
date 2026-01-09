@@ -148,6 +148,56 @@ $thumbor->url($image)
     ->addFilter('sharpen', 1.5, 0.5, true);
 ```
 
+### Convenience Methods
+
+The library provides convenience methods for common filters:
+
+```php
+// Image adjustments
+$thumbor->url($image)->quality(80);           // JPEG quality (1-100)
+$thumbor->url($image)->brightness(20);        // -100 to 100
+$thumbor->url($image)->contrast(10);          // -100 to 100
+$thumbor->url($image)->saturation(1.2);       // 0.0 to 2.0
+$thumbor->url($image)->grayscale();
+
+// Effects
+$thumbor->url($image)->blur(5);               // Radius
+$thumbor->url($image)->blur(5, 2);            // Radius + sigma
+$thumbor->url($image)->sharpen(1.5, 0.5);     // Amount, radius
+$thumbor->url($image)->noise(20);             // 0-100
+$thumbor->url($image)->rotate(90);            // 0, 90, 180, 270
+
+// Format conversion
+$thumbor->url($image)->webp();                // Convert to WebP
+$thumbor->url($image)->avif();                // Convert to AVIF [v7+]
+$thumbor->url($image)->format('jpeg');        // Any format
+
+// Utilities
+$thumbor->url($image)->stripExif();           // Remove EXIF metadata
+$thumbor->url($image)->stripIcc();            // Remove ICC profile
+$thumbor->url($image)->noUpscale();           // Prevent upscaling
+$thumbor->url($image)->maxBytes(50000);       // Limit file size
+
+// Overlays
+$thumbor->url($image)->watermark($watermarkUrl, 10, 10, 50);  // URL, x, y, alpha
+$thumbor->url($image)->fill('auto');          // Fill color (hex/auto/blur/transparent)
+$thumbor->url($image)->roundCorners(10);      // Border radius
+```
+
+### Thumbor Version Compatibility
+
+Most features work with Thumbor 6.0+. The following require **Thumbor 7.0+**:
+
+| Feature | Method | Thumbor Version |
+|---------|--------|-----------------|
+| AVIF format | `avif()`, `format('avif')` | 7.0+ |
+| HEIC format | `format('heic')` | 7.0+ |
+| Max bytes | `maxBytes()` | 7.0+ |
+| Saturation | `saturation()` | 7.0+ |
+| Equalize | `equalize()` | 7.0+ |
+
+> **Note:** Using v7+ features on older Thumbor servers will result in the filter being ignored or an error from Thumbor.
+
 ### Other Operations
 
 ```php
