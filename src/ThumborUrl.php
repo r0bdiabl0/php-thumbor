@@ -39,7 +39,9 @@ final class ThumborUrl implements Stringable
             ? self::sign($imgPath, $this->secret)
             : 'unsafe';
 
-        return sprintf('%s/%s/%s', $this->server, $signature, $imgPath);
+        $server = rtrim($this->server, '/');
+
+        return sprintf('%s/%s/%s', $server, $signature, $imgPath);
     }
 
     /**
