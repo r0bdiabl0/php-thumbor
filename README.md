@@ -24,7 +24,7 @@ A modern PHP library for generating [Thumbor](https://github.com/thumbor/thumbor
 ## Installation
 
 ```bash
-composer require r0bdiabl0/php-thumbor
+composer require r0bdiablo/php-thumbor
 ```
 
 ## Quick Start
@@ -209,7 +209,7 @@ This package replaces the deprecated `r0bdiablo/laravel5-phumbor` package. To mi
 1. Update your `composer.json`:
    ```bash
    composer remove r0bdiablo/laravel5-phumbor
-   composer require r0bdiabl0/php-thumbor
+   composer require r0bdiablo/php-thumbor
    ```
 
 2. Update namespace imports:
@@ -261,6 +261,6 @@ This package is open-sourced software licensed under the [MIT license](LICENSE).
 
 ## Credits
 
-- [Robert Pettique](https://github.com/r0bdiablo)
+- [Robert Pettique](https://github.com/r0bdiabl0)
 - Inspired by [99designs/phumbor](https://github.com/99designs/phumbor)
 - Built for [Thumbor](https://github.com/thumbor/thumbor)
