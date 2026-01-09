@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace R0bdiabl0\Thumbor\Laravel;
 
-use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
 use R0bdiabl0\Thumbor\Thumbor;
 
@@ -28,12 +27,12 @@ class ThumborServiceProvider extends ServiceProvider
             'thumbor'
         );
 
-        $this->app->singleton('thumbor', function (Container $app): Thumbor {
+        $this->app->singleton('thumbor', function (): Thumbor {
             /** @var string $server */
-            $server = $app['config']->get('thumbor.server', '');
+            $server = config('thumbor.server', '');
 
             /** @var string|null $key */
-            $key = $app['config']->get('thumbor.key');
+            $key = config('thumbor.key');
 
             return new Thumbor($server, $key);
         });
