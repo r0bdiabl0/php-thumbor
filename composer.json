@@ -1,5 +1,5 @@
 {
-    "name": "r0bdiablo/php-thumbor",
+    "name": "r0bdiabl0/php-thumbor",
     "description": "PHP library for generating Thumbor image URLs. Works standalone or with Laravel integration.",
     "homepage": "https://github.com/r0bdiabl0/php-thumbor",
     "license": "MIT",
