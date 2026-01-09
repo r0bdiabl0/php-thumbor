@@ -252,13 +252,13 @@ $url = $thumbor->url($image)->fitIn(640, 480);
 
 **Warning:** Never use unsafe URLs in production as they allow anyone to generate arbitrary image transformations.
 
-## Migration from r0bdiabl0/laravel5-phumbor
+## Migration from r0bdiablo/laravel5-phumbor
 
-This package replaces the deprecated `r0bdiabl0/laravel5-phumbor` package. To migrate:
+This package replaces the deprecated `r0bdiablo/laravel5-phumbor` package. To migrate:
 
 1. Update your `composer.json`:
    ```bash
-   composer remove r0bdiabl0/laravel5-phumbor
+   composer remove r0bdiablo/laravel5-phumbor
    composer require r0bdiabl0/php-thumbor
    ```
 
