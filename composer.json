@@ -1,0 +1,58 @@
+{
+    "name": "r0bdiablo/php-thumbor",
+    "description": "PHP library for generating Thumbor image URLs. Works standalone or with Laravel integration.",
+    "homepage": "https://github.com/r0bdiabl0/php-thumbor",
+    "license": "MIT",
+    "keywords": [
+        "thumbor",
+        "image",
+        "thumbnail",
+        "resize",
+        "manipulation",
+        "cdn",
+        "laravel",
+        "php"
+    ],
+    "authors": [
+        {
+            "name": "Robert Pettique",
+            "email": "robert@rkcreative.co"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^10.5|^11.0",
+        "phpstan/phpstan": "^1.10"
+    },
+    "suggest": {
+        "illuminate/support": "Required for Laravel integration (^10.0|^11.0|^12.0|^13.0)"
+    },
+    "autoload": {
+        "psr-4": {
+            "R0bdiabl0\\Thumbor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "R0bdiabl0\\Thumbor\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "R0bdiabl0\\Thumbor\\Laravel\\ThumborServiceProvider"
+            ],
+            "aliases": {
+                "Thumbor": "R0bdiabl0\\Thumbor\\Laravel\\Facades\\Thumbor"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
