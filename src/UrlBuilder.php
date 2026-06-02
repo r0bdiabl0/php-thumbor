@@ -71,8 +71,10 @@ final class UrlBuilder implements Stringable
         private readonly string $server,
         private readonly ?string $secret,
         private readonly string $original,
+        ?string $defaultFormat = null,
     ) {
         $this->commands = new CommandSet();
+        $this->commands->setDefaultFormat($defaultFormat);
     }
 
     /**

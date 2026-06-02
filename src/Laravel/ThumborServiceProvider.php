@@ -34,7 +34,10 @@ class ThumborServiceProvider extends ServiceProvider
             /** @var string|null $key */
             $key = config('thumbor.key');
 
-            return new Thumbor($server, $key);
+            /** @var string|null $defaultFormat */
+            $defaultFormat = config('thumbor.default_format');
+
+            return new Thumbor($server, $key, $defaultFormat);
         });
 
         $this->app->alias('thumbor', Thumbor::class);

@@ -19,3 +19,6 @@ coverage/
 
 # Build artifacts
 *.phar
+
+# Claude Code
+.claude/

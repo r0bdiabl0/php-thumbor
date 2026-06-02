@@ -29,9 +29,16 @@ namespace R0bdiabl0\Thumbor;
  */
 final class Thumbor
 {
+    /**
+     * @param string|null $defaultFormat Optional default output format (e.g. 'webp')
+     *                                   applied to every generated URL unless the
+     *                                   caller pins one explicitly. See
+     *                                   CommandSet::setDefaultFormat().
+     */
     public function __construct(
         private readonly string $server,
         private readonly ?string $secret = null,
+        private readonly ?string $defaultFormat = null,
     ) {}
 
     /**
@@ -40,9 +47,9 @@ final class Thumbor
      * This static method provides a consistent API with the original
      * 99designs/phumbor library for easier migration.
      */
-    public static function construct(string $server, ?string $secret = null): self
+    public static function construct(string $server, ?string $secret = null, ?string $defaultFormat = null): self
     {
-        return new self($server, $secret);
+        return new self($server, $secret, $defaultFormat);
     }
 
     /**
@@ -50,7 +57,7 @@ final class Thumbor
      */
     public function url(string $imageUrl): UrlBuilder
     {
-        return new UrlBuilder($this->server, $this->secret, $imageUrl);
+        return new UrlBuilder($this->server, $this->secret, $imageUrl, $this->defaultFormat);
     }
 
     /**

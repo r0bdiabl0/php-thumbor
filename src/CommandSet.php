@@ -27,6 +27,8 @@ final class CommandSet
     /** @var array<int, string> */
     private array $filters = [];
 
+    private ?string $defaultFormat = null;
+
     /**
      * Trim surrounding space from the thumbnail.
      *
@@ -193,6 +195,25 @@ final class CommandSet
     public function format(string $format): void
     {
         $this->addFilter('format', $format);
+    }
+
+    /**
+     * Set a default output format, applied at build time ONLY when no explicit
+     * format() filter has been added.
+     *
+     * This lets a deployment pin a single deterministic output format (e.g.
+     * 'webp') across every generated URL — which is required for CDN caching,
+     * since content-negotiated responses (`Vary: Accept`) are uncacheable on
+     * many CDNs — without touching call sites, while still allowing any URL to
+     * override it by calling format()/webp()/avif() or addFilter('format', ...).
+     *
+     * Pass null to disable.
+     *
+     * @param string|null $format One of: 'webp', 'jpeg', 'png', 'gif', 'avif', 'heic'
+     */
+    public function setDefaultFormat(?string $format): void
+    {
+        $this->defaultFormat = $format;
     }
 
     /**
@@ -481,10 +502,39 @@ final class CommandSet
             $commands[] = 'smart';
         }
 
-        if (count($this->filters) > 0) {
-            $commands[] = 'filters:' . implode(':', $this->filters);
+        $filters = $this->filters;
+
+        // Apply the configured default format unless the caller already pinned a
+        // format explicitly, and never for metadata-only requests (which return
+        // a JSON document rather than an image).
+        if (
+            $this->defaultFormat !== null
+            && ! $this->metadataOnly
+            && ! $this->hasExplicitFormat()
+        ) {
+            $filters[] = sprintf('format(%s)', $this->defaultFormat);
+        }
+
+        if (count($filters) > 0) {
+            $commands[] = 'filters:' . implode(':', $filters);
         }
 
         return $commands;
+    }
+
+    /**
+     * Whether an explicit format() filter has already been added (via format(),
+     * webp(), avif(), or addFilter('format', ...)). Used to ensure the default
+     * format never overrides a caller-specified one.
+     */
+    private function hasExplicitFormat(): bool
+    {
+        foreach ($this->filters as $filter) {
+            if (str_starts_with($filter, 'format(')) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
